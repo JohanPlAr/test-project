@@ -1,0 +1,22 @@
+.game-area {
+    display: flex;
+    height: 490px;
+    width: 630px;
+    border-radius: 15px;
+    background-color : blue;
+}
+.flex-container {
+    flex-direction: row;
+}
+.game-box {margin-top: 10px;
+    margin-left: 10px;
+    margin-right:10px;
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    background-color:white;}
+
+.game-column {
+    background-color : blue;
+    border-radius: 15px;
+}
