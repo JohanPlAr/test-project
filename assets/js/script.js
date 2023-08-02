@@ -1,4 +1,4 @@
-function runGame() {}
+function runGame() {
 
 let turn = 0;
 let gameArrays = [[], [], [], [], [], [], []];
@@ -35,21 +35,30 @@ function choseColumn() {
 function checkWinner(color) {
     for (let i = 0; i < gameArrays.length; i++) {
         for (let j = 0; j < gameArrays[i].length; j++){ 
-            if (gameArrays[i][j]== color && gameArrays[i+1][j]== color && gameArrays[i+2][j]== color && gameArrays[i+3][j]== color){
+            if (i<5 && gameArrays[i][j]== color && gameArrays[i+1][j]== color && gameArrays[i+2][j]== color && gameArrays[i+3][j]== color){
                 console.log("You win");
-                document.getElementById("winner-text").innerText = `${color} Wins!`
+                document.getElementById("winner-text").innerText = `${color} Wins!`;
+                
             }
             if (gameArrays[i][j]== color && gameArrays[i][j+1]== color && gameArrays[i][j+2]== color && gameArrays[i][j+3]== color){
                 console.log("You win");
-                document.getElementById("winner-text").innerText = `${color} Wins!`
+                document.getElementById("winner-text").innerText = `${color} Wins!`;
+                
             }
-            if (gameArrays[i][j]== color && gameArrays[i+1][j+1]== color && gameArrays[i+2][j+2]== color && gameArrays[i+3][j+3]== color){
+            if (i<6 && gameArrays[i][j]== color && gameArrays[i+1][j+1]== color && gameArrays[i+2][j+2]== color && gameArrays[i+3][j+3]== color){
                 console.log("You win");
-                document.getElementById("winner-text").innerText = `${color} Wins!`
+                document.getElementById("winner-text").innerText = `${color} Wins!`;
+                
             }
-            if (gameArrays[i][j]== color && gameArrays[i-1][j-1]== color && gameArrays[i-2][j-2]== color && gameArrays[i-3][j-3]== color){
+            if (i>2 && gameArrays[i][j]== color && gameArrays[i-1][j-1]== color && gameArrays[i-2][j-2]== color && gameArrays[i-3][j-3]== color){
                 console.log("You win");
-                document.getElementById("winner-text").innerText = `${color} Wins!`
+                document.getElementById("winner-text").innerText = `${color} Wins!`;
+                
+            }
+            if (i>2 && gameArrays[i][j]== color && gameArrays[i-1][j+1]== color && gameArrays[i-2][j+2]== color && gameArrays[i-3][j+3]== color){
+                console.log("You win");
+                document.getElementById("winner-text").innerText = `${color} Wins!`;
+                
             }
 
 }
@@ -82,3 +91,6 @@ function addCoin(playerColumn, color) {
 
 markColumn();
 choseColumn();
+}
+
+runGame()
