@@ -6,8 +6,13 @@
     <title>Document</title>
     <link rel="stylesheet" href="assets/css/style.css">
 <body>
-    <div>
-<div class="flex-container" id="game-title"></div>
+   <div id="game-title"><h1>Four in a row</h1></div>
+<div class="flex-container">
+<div id="player1"><h2>Player1</h2>
+    <span id="p1-turn-text">Next play</span>
+    <div id="p1-turn">
+        </div>
+        <span id="p1-score">Score</span></div>
     <div class="game-area" class="flex-container">
         <div class="game-column" id="column1">
             <div class="game-box" id="x6, y1"></div> 
@@ -66,10 +71,21 @@
             <div class="game-box" id="x1, y7"></div> 
         </div>
     </div>
+
+<div id="player2"><h2>Player2</h2>
+    <span id="p2-turn-text"></span>
+    <div id="p2-turn"></div>
+<span id="p2-score">Score</span>
+</div>
 </div>
     <div id="winner-box">
 <h2 id="winner-text"></h2>
     </div>
-    <script src="assets/js/script.js"></script> 
+    <div id="buttons" class="flex-container"> 
+        <button id="start-button" type="submit">Play Game</button> 
+        <button id= "reset-board-button" type="reset">Reset Board</button>
+        <button id="reset-score-button" type="reset">Reset Score</button>   </div>
+    <script src="assets/js/script.js"></script>
+
 </body>
 </html>
