@@ -17,23 +17,8 @@ function markColumn() {
     });
   });
 }
-function markPosition(){
-    let gameBoxes = document.querySelectorAll(".game-box");
-     
-    gameBoxes.forEach(function (box) {
-        if (box.style.backgroundColor == "white"){
-        box.addEventListener("mouseover", function (){
-           
-                            box.style.backgroundColor = "green";
-        
-        });
-        }
-box.addEventListener("mouseout", function () {
- if (box.style.backgroundColor == "green"){
-    box.style.backgroundColor = "white";}
-});   
-});    
-}
+
+
 
 function choseColumn() {
   let playerColumn = 0;
@@ -63,33 +48,51 @@ function checkWinner(color) {
     for (let i = 0; i < gameArrays.length; i++) {
         for (let j = 0; j < gameArrays[i].length; j++){
             
-            if (i<4 && gameArrays[i][j]== color && gameArrays[i+1][j]== color && gameArrays[i+2][j]== color && gameArrays[i+3][j]== color){
+            if (i<4 && gameArrays[i][j]== color &&
+                 gameArrays[i+1][j]== color &&
+                  gameArrays[i+2][j]== color &&
+                   gameArrays[i+3][j]== color){
                 console.log("You win");
                 document.getElementById("winner-text").innerText = `${color} Wins!`;
                 gameScore(color);
+              
                       
             }
-            if (gameArrays[i][j]== color && gameArrays[i][j+1]== color && gameArrays[i][j+2]== color && gameArrays[i][j+3]== color){
+            if (gameArrays[i][j]== color &&
+                 gameArrays[i][j+1]== color &&
+                  gameArrays[i][j+2]== color &&
+                   gameArrays[i][j+3]== color){
                 console.log("You win");
                 document.getElementById("winner-text").innerText = `${color} Wins!`;
                 gameScore(color);
-                
+         
             }
-            if (i<4 && gameArrays[i][j]== color && gameArrays[i+1][j+1]== color && gameArrays[i+2][j+2]== color && gameArrays[i+3][j+3]== color){
+            if (i<4 && gameArrays[i][j]== color &&
+                 gameArrays[i+1][j+1]== color &&
+                  gameArrays[i+2][j+2]== color &&
+                   gameArrays[i+3][j+3]== color){
                 console.log("You win");
                 document.getElementById("winner-text").innerText = `${color} Wins!`;
                 gameScore(color);
-                
+               
             }
-            if (i>2 && gameArrays[i][j]== color && gameArrays[i-1][j-1]== color && gameArrays[i-2][j-2]== color && gameArrays[i-3][j-3]== color){
+            if (i>2 && gameArrays[i][j]== color &&
+                 gameArrays[i-1][j-1]== color &&
+                  gameArrays[i-2][j-2]== color &&
+                   gameArrays[i-3][j-3]== color){
                 console.log("You win");
                 document.getElementById("winner-text").innerText = `${color} Wins!`;
                 gameScore(color);
+               
             }
-            if (i>2 && gameArrays[i][j]== color && gameArrays[i-1][j+1]== color && gameArrays[i-2][j+2]== color && gameArrays[i-3][j+3]== color){
+            if (i>2 && gameArrays[i][j]== color && 
+                gameArrays[i-1][j+1]== color && 
+                gameArrays[i-2][j+2]== color && 
+                gameArrays[i-3][j+3]== color){
                 console.log("You win");
                 document.getElementById("winner-text").innerText = `${color} Wins!`;
                 gameScore(color);
+               
             }
 
 }
@@ -148,7 +151,6 @@ function resetScore(){
 }
 
 markColumn();
-markPosition();
 choseColumn();
 let resetBoardButton = document.getElementById("reset-board-button");
 resetBoardButton.addEventListener("click", resetBoard);
