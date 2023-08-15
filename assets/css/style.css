@@ -1,6 +1,7 @@
 #game-title {
     width:100%;
     text-align: center;
+    text-transform: capitalize;
 }
 .game-area {
     display: flex;
@@ -26,13 +27,18 @@ display: flex;
     background-color : blue;
     border-radius: 15px;
 }
-#winner-text {font-size: xx-large;
+#game-title {font-size: xx-large;
     width: 100%;
                 text-align: center;
 }
+#players-area{
+   
+}
 #player1, #player2{ 
+    
     height:100px;
-    margin: 20px;
+    margin-right: 20px;
+    margin-left: 20px;
 }
 #p1-turn-text, #p2-turn-text{
     height: 2rem;
@@ -54,3 +60,4 @@ button {
     border-width: 4px;
     margin: 20px;
 }
+

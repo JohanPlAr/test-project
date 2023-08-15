@@ -53,7 +53,7 @@ function checkWinner(color) {
                   gameArrays[i+2][j]== color &&
                    gameArrays[i+3][j]== color){
                 console.log("You win");
-                document.getElementById("winner-text").innerText = `${color} Wins!`;
+                document.getElementById("game-title").innerText = `${color} Wins!`;
                 gameScore(color);
               
                       
@@ -63,7 +63,7 @@ function checkWinner(color) {
                   gameArrays[i][j+2]== color &&
                    gameArrays[i][j+3]== color){
                 console.log("You win");
-                document.getElementById("winner-text").innerText = `${color} Wins!`;
+                document.getElementById("game-title").innerHTML = `<h1>${color} Wins!</h1>`;
                 gameScore(color);
          
             }
@@ -72,7 +72,7 @@ function checkWinner(color) {
                   gameArrays[i+2][j+2]== color &&
                    gameArrays[i+3][j+3]== color){
                 console.log("You win");
-                document.getElementById("winner-text").innerText = `${color} Wins!`;
+                document.getElementById("game-title").innerHTML = `<h1>${color} Wins!</h1>`;
                 gameScore(color);
                
             }
@@ -81,16 +81,15 @@ function checkWinner(color) {
                   gameArrays[i-2][j-2]== color &&
                    gameArrays[i-3][j-3]== color){
                 console.log("You win");
-                document.getElementById("winner-text").innerText = `${color} Wins!`;
-                gameScore(color);
-               
+                document.getElementById("game-title").innerHTML = `<h1>${color} Wins!</h1>`;
+                gameScore(color);               
             }
             if (i>2 && gameArrays[i][j]== color && 
                 gameArrays[i-1][j+1]== color && 
                 gameArrays[i-2][j+2]== color && 
                 gameArrays[i-3][j+3]== color){
                 console.log("You win");
-                document.getElementById("winner-text").innerText = `${color} Wins!`;
+                document.getElementById("game-title").innerHTML =`<h1>${color} Wins!</h1>`;
                 gameScore(color);
                
             }
@@ -140,7 +139,7 @@ function resetBoard(){
 }
 }
 gameArrays = [[], [], [], [], [], [], []];
-document.getElementById("winner-text").innerText = "";
+document.getElementById("game-title").innerHTML = "<h1>four in a row</h1>";
 
 }
 function resetScore(){
