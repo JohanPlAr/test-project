@@ -1,3 +1,10 @@
+const openGameBtn = document.getElementById("open-game");
+const theGame = document.querySelector(".the-game");
+const mainMenu = document.querySelector(".main-menu");
+openGameBtn.addEventListener("click", () => {
+  theGame.style.display = "block";
+  mainMenu.style.display = "none";
+})
 function runGame() {
 
 let turn = 0;
@@ -6,14 +13,22 @@ let gameColumns = document.getElementsByClassName("game-column");
 let p1Score = 0;
 let p2Score = 0;
 
+
 function markColumn() {
   let markedColumns = document.querySelectorAll(".game-column");
   markedColumns.forEach(function (column) {
     column.addEventListener("mouseover", function () {
       column.style.backgroundColor = "green";
-         });
+      let boxes = Array.from(column.querySelectorAll(".game-box"));
+      boxes = boxes.filter((x) => !x.classList.contains("active"));
+      console.log(boxes);
+      boxes.at(-1).style.backgroundColor = "grey";
+    });
     column.addEventListener("mouseout", function () {
+      let boxes = Array.from(column.querySelectorAll(".game-box"));
+      boxes = boxes.filter((x) => !x.classList.contains("active"));
       column.style.backgroundColor = "initial";
+      boxes.at(-1).style.removeProperty("background-color");
     });
   });
 }
@@ -53,17 +68,19 @@ function checkWinner(color) {
                   gameArrays[i+2][j]== color &&
                    gameArrays[i+3][j]== color){
                 console.log("You win");
-                document.getElementById("game-title").innerText = `${color} Wins!`;
+                document.getElementById("winner-text").innerText = `${color} Wins!`;
                 gameScore(color);
+                afterWinMenu()
+             
               
-                      
+                     
             }
             if (gameArrays[i][j]== color &&
                  gameArrays[i][j+1]== color &&
                   gameArrays[i][j+2]== color &&
                    gameArrays[i][j+3]== color){
                 console.log("You win");
-                document.getElementById("game-title").innerHTML = `<h1>${color} Wins!</h1>`;
+                document.getElementById("winner-text").innerText = `${color} Wins!`;
                 gameScore(color);
          
             }
@@ -72,7 +89,7 @@ function checkWinner(color) {
                   gameArrays[i+2][j+2]== color &&
                    gameArrays[i+3][j+3]== color){
                 console.log("You win");
-                document.getElementById("game-title").innerHTML = `<h1>${color} Wins!</h1>`;
+                document.getElementById("winner-text").innerText = `${color} Wins!`;
                 gameScore(color);
                
             }
@@ -81,15 +98,16 @@ function checkWinner(color) {
                   gameArrays[i-2][j-2]== color &&
                    gameArrays[i-3][j-3]== color){
                 console.log("You win");
-                document.getElementById("game-title").innerHTML = `<h1>${color} Wins!</h1>`;
-                gameScore(color);               
+                document.getElementById("winner-text").innerText = `${color} Wins!`;
+                gameScore(color);
+               
             }
             if (i>2 && gameArrays[i][j]== color && 
                 gameArrays[i-1][j+1]== color && 
                 gameArrays[i-2][j+2]== color && 
                 gameArrays[i-3][j+3]== color){
                 console.log("You win");
-                document.getElementById("game-title").innerHTML =`<h1>${color} Wins!</h1>`;
+                document.getElementById("winner-text").innerText = `${color} Wins!`;
                 gameScore(color);
                
             }
@@ -105,6 +123,7 @@ function displayCoins(color) {
       if (gameArrays[i][j] == color) {
         document.getElementById(`x${j + 1}, y${i + 1}`).style.backgroundColor =
           color;
+        document.getElementById(`x${j + 1}, y${i + 1}`).classList.add("active");
       }
       
     }
@@ -130,16 +149,19 @@ function addCoin(playerColumn, color) {
 }
 
 function resetBoard(){ 
-       
+  let boxes = document.querySelectorAll('.game-box');
+  boxes.forEach(function(box) {
+     box.classList.remove('active');
+      });
     for (let i = 0; i < gameArrays.length; i++) {
         for (let j = 0; j < gameArrays[i].length; j++) {
             document.getElementById(`x${j + 1}, y${i + 1}`).style.backgroundColor = "white";
           
-  
+          
 }
 }
 gameArrays = [[], [], [], [], [], [], []];
-document.getElementById("game-title").innerHTML = "<h1>four in a row</h1>";
+document.getElementById("winner-text").innerText = "";
 
 }
 function resetScore(){
@@ -147,6 +169,17 @@ function resetScore(){
     let p2Score = 0;
     document.getElementById("p1-score").innerText = `Score ${p1Score}`;
     document.getElementById("p2-score").innerText = `Score ${p2Score}`;
+}
+
+function afterWinMenu(){   
+resetBoard()  
+let modal = document.getElementById("modal");
+modal.style.display = "flex";
+let span = document.getElementsByClassName("close")[0];
+span.onclick = function() {
+modal.style.display = "none";
+
+}
 }
 
 markColumn();
@@ -159,4 +192,3 @@ resetScoreButton.addEventListener("click", resetScore)
 
 let startButton = document.getElementById("start-button");
 startButton.addEventListener("click", runGame);
-
