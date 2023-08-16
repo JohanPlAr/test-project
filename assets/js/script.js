@@ -1,10 +1,23 @@
 const openGameBtn = document.getElementById("open-game");
+const readRulesBtn = document.getElementById("read-rules");
 const theGame = document.querySelector(".the-game");
 const mainMenu = document.querySelector(".main-menu");
+const rulesModal = document.getElementById("rules-modal");
+const afterWinModal = document.getElementById("after-win-modal");
+
 openGameBtn.addEventListener("click", () => {
   theGame.style.display = "block";
   mainMenu.style.display = "none";
-})
+});
+readRulesBtn.addEventListener("click", () => {
+  rulesModal.style.display = "flex";
+  theGame.style.display = "none";
+});
+let span = document.getElementsByClassName("close")[0];
+span.onclick = function() {
+rulesModal.style.display = "none";
+}
+
 function runGame() {
 
 let turn = 0;
@@ -12,17 +25,21 @@ let gameArrays = [[], [], [], [], [], [], []];
 let gameColumns = document.getElementsByClassName("game-column");
 let p1Score = 0;
 let p2Score = 0;
-
+document.getElementById("p1-turn").style.backgroundColor = "red";
+document.getElementById("p1-turn-text").innerText = "Next play";
 
 function markColumn() {
   let markedColumns = document.querySelectorAll(".game-column");
   markedColumns.forEach(function (column) {
     column.addEventListener("mouseover", function () {
-      column.style.backgroundColor = "green";
+      column.style.backgroundColor = "light-blue";
       let boxes = Array.from(column.querySelectorAll(".game-box"));
       boxes = boxes.filter((x) => !x.classList.contains("active"));
       console.log(boxes);
-      boxes.at(-1).style.backgroundColor = "grey";
+      if (turn % 2 === 0){
+      boxes.at(-1).style.backgroundColor = "red";}
+      else {
+        boxes.at(-1).style.backgroundColor = "yellow";}
     });
     column.addEventListener("mouseout", function () {
       let boxes = Array.from(column.querySelectorAll(".game-box"));
@@ -68,9 +85,8 @@ function checkWinner(color) {
                   gameArrays[i+2][j]== color &&
                    gameArrays[i+3][j]== color){
                 console.log("You win");
-                document.getElementById("winner-text").innerText = `${color} Wins!`;
                 gameScore(color);
-                afterWinMenu()
+                afterWinMenu(color);
              
               
                      
@@ -80,8 +96,8 @@ function checkWinner(color) {
                   gameArrays[i][j+2]== color &&
                    gameArrays[i][j+3]== color){
                 console.log("You win");
-                document.getElementById("winner-text").innerText = `${color} Wins!`;
                 gameScore(color);
+                afterWinMenu(color);
          
             }
             if (i<4 && gameArrays[i][j]== color &&
@@ -89,8 +105,8 @@ function checkWinner(color) {
                   gameArrays[i+2][j+2]== color &&
                    gameArrays[i+3][j+3]== color){
                 console.log("You win");
-                document.getElementById("winner-text").innerText = `${color} Wins!`;
                 gameScore(color);
+                afterWinMenu(color);
                
             }
             if (i>2 && gameArrays[i][j]== color &&
@@ -98,8 +114,8 @@ function checkWinner(color) {
                   gameArrays[i-2][j-2]== color &&
                    gameArrays[i-3][j-3]== color){
                 console.log("You win");
-                document.getElementById("winner-text").innerText = `${color} Wins!`;
                 gameScore(color);
+                afterWinMenu(color);
                
             }
             if (i>2 && gameArrays[i][j]== color && 
@@ -107,9 +123,8 @@ function checkWinner(color) {
                 gameArrays[i-2][j+2]== color && 
                 gameArrays[i-3][j+3]== color){
                 console.log("You win");
-                document.getElementById("winner-text").innerText = `${color} Wins!`;
                 gameScore(color);
-               
+                afterWinMenu(color)               
             }
 
 }
@@ -161,7 +176,7 @@ function resetBoard(){
 }
 }
 gameArrays = [[], [], [], [], [], [], []];
-document.getElementById("winner-text").innerText = "";
+
 
 }
 function resetScore(){
@@ -171,15 +186,16 @@ function resetScore(){
     document.getElementById("p2-score").innerText = `Score ${p2Score}`;
 }
 
-function afterWinMenu(){   
+function afterWinMenu(color){   
 resetBoard()  
-let modal = document.getElementById("modal");
-modal.style.display = "flex";
-let span = document.getElementsByClassName("close")[0];
+afterWinModal.style.display = "flex";
+let span = document.getElementsByClassName("close")[1];
 span.onclick = function() {
-modal.style.display = "none";
-
+afterWinModal.style.display = "none";
 }
+document.getElementById("winner-text").innerText = `${color} Wins!`;
+newRound();
+quitGame();
 }
 
 markColumn();
@@ -188,6 +204,21 @@ let resetBoardButton = document.getElementById("reset-board-button");
 resetBoardButton.addEventListener("click", resetBoard);
 let resetScoreButton = document.getElementById("reset-score-button");
 resetScoreButton.addEventListener("click", resetScore)
+
+
+function newRound(){
+  let newRoundButton = document.getElementById("new-round-button");
+  newRoundButton.onclick = function() {
+    afterWinModal.style.display = "none";
+  }
+
+}
+function quitGame(){
+  let quitGameButton = document.getElementById("quit-game-button");
+  if (quitGameButton.onClick) {window.location.reload()}
+  
+}
+
 }
 
 let startButton = document.getElementById("start-button");
