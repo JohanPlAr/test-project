@@ -26,7 +26,9 @@ let gameColumns = document.getElementsByClassName("game-column");
 let p1Score = 0;
 let p2Score = 0;
 document.getElementById("p1-turn").style.backgroundColor = "red";
-document.getElementById("p1-turn-text").innerText = "Next play";
+document.getElementById("p1-turn-text").innerText = "Next Play";
+
+
 
 function markColumn() {
   let markedColumns = document.querySelectorAll(".game-column");
@@ -63,13 +65,13 @@ function choseColumn() {
         addCoin(playerColumn, "red");
         document.getElementById("p1-turn").style.backgroundColor = "white";
         document.getElementById("p2-turn").style.backgroundColor = "yellow";
-        document.getElementById("p2-turn-text").innerText = "Next play";
+        document.getElementById("p2-turn-text").innerText = "Next Play";
         document.getElementById("p1-turn-text").innerText = "";
       } else {
         addCoin(playerColumn, "yellow");
         document.getElementById("p2-turn").style.backgroundColor = "white";
         document.getElementById("p1-turn").style.backgroundColor = "red";
-        document.getElementById("p1-turn-text").innerText = "Next play";
+        document.getElementById("p1-turn-text").innerText = "Next Play";
         document.getElementById("p2-turn-text").innerText = "";
       }
       turn += 1;
@@ -218,8 +220,25 @@ function quitGame(){
   if (quitGameButton.onClick) {window.location.reload()}
   
 }
-
 }
 
+let clickCount = 0;
+
+function handleClick() {
+  let resetBoard = runGame().resetBoard;
+  clickCount++;
+  if (clickCount >1) {
+    clickCount = 0;
+    alert("Warning! Clicking on the 'Start Game'-button again will reset the score and erase board and the game will start from the beginning")
+    startButton.addEventListener("click", function(){
+      resetBoard();
+      
+      
+    });
+  
+  }
+  else {runGame()}
+}
 let startButton = document.getElementById("start-button");
-startButton.addEventListener("click", runGame);
+startButton.addEventListener("click", handleClick);
+  

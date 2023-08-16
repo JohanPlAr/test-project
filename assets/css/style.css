@@ -68,9 +68,9 @@
     height: 5em;
     font-family: var(--primary-font-family);
     margin-top: 2em;
+   }
  
-  }
-  
+      
   #game-title {
     width: 100%;
     text-align: center;
@@ -187,19 +187,26 @@
     text-transform: uppercase;
     border-radius: 10px;
   }
+#buttons{ display: flex;
 
+}
   .button {
     border-radius: 10px;
     border: 4px solid coral;
-    margin: 5vw 5vw 3vw 5vw;
     padding: 10px 15px;
     font-family: var(--primary-font-family);
   }
-
+.game-btn{
+  margin: 5vw 5vw 3vw 5vw;
+}
   button:hover{cursor:pointer;
                 background-color: bisque;
             border-color: brown;}
 .close:hover {cursor:pointer;}
+
+.after-win-btn{
+  margin: 5vw;
+}
 
   @media only screen and (min-width: 665px) {
     .game-area {
