@@ -51,9 +51,9 @@ function runGame() {
         boxes = boxes.filter((x) => !x.classList.contains("active"));
         console.log(boxes);
         if (turn % 2 === 0) {
-          if (boxes.length<0){
+          if (boxes.length>0){
           boxes.at(-1).style.backgroundColor = "red";}
-        } else {if (boxes.length<0) {
+        } else {if (boxes.length>0) {
           boxes.at(-1).style.backgroundColor = "yellow";
         }
       }
@@ -62,7 +62,7 @@ function runGame() {
         let boxes = Array.from(column.querySelectorAll(".game-box"));
         boxes = boxes.filter((x) => !x.classList.contains("active"));
         column.style.backgroundColor = "initial";
-        if (boxes.length<0){
+        if (boxes.length>0){
         boxes.at(-1).style.removeProperty("background-color");
       }
       });
