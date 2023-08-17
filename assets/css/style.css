@@ -181,7 +181,7 @@
   }
   #after-win-menu{
     margin-top:15em;
-    width:60vw;
+    width:fit-content;
     height:fit-content;
     background-color: white;
     text-transform: uppercase;
@@ -205,7 +205,7 @@
 .close:hover {cursor:pointer;}
 
 .after-win-btn{
-  margin: 5vw;
+  margin: 2em;
 }
 
   @media only screen and (min-width: 665px) {
