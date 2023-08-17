@@ -58,7 +58,9 @@ function runGame() {
         let boxes = Array.from(column.querySelectorAll(".game-box"));
         boxes = boxes.filter((x) => !x.classList.contains("active"));
         column.style.backgroundColor = "initial";
+        if (boxes.length<0){
         boxes.at(-1).style.removeProperty("background-color");
+      }
       });
     });
   }
