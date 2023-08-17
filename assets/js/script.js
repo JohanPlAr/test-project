@@ -40,6 +40,8 @@ function runGame() {
   }
   resetGame();
 
+
+
   function markColumn() {
     let markedColumns = document.querySelectorAll(".game-column");
     markedColumns.forEach(function (column) {
@@ -49,10 +51,12 @@ function runGame() {
         boxes = boxes.filter((x) => !x.classList.contains("active"));
         console.log(boxes);
         if (turn % 2 === 0) {
-          boxes.at(-1).style.backgroundColor = "red";
-        } else {
+          if (boxes.length<0){
+          boxes.at(-1).style.backgroundColor = "red";}
+        } else {if (boxes.length<0) {
           boxes.at(-1).style.backgroundColor = "yellow";
         }
+      }
       });
       column.addEventListener("mouseout", function () {
         let boxes = Array.from(column.querySelectorAll(".game-box"));
@@ -245,21 +249,9 @@ function runGame() {
     window.location.reload();
   }
 
-  let quitGameButton = document.getElementById("quit-game-button");
-  quitGameButton.addEventListener("click", quitGame);
+  let quitGameButton = document.getElementsByClassName("quit-game-button");
+  quitGameButton[0].addEventListener("click", quitGame);
+  quitGameButton[1].addEventListener("click", quitGame);
 }
-
-let clickCount = 0;
-let startButton = document.getElementById("start-button");
-function handleClick() {
-  clickCount++;
-  if (clickCount > 1) {
-    clickCount = 0;
-    alert(
-      "Warning! Clicking the 'Play Game'-button again will reset the score, erase board and the game will start from the beginning"
-    );
-  } else {
     runGame();
-  }
-}
-startButton.addEventListener("click", handleClick);
+   
