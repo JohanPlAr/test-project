@@ -24,22 +24,9 @@ function runGame() {
   let gameColumns = document.getElementsByClassName("game-column");
   let p1Score = 0;
   let p2Score = 0;
-
-  function resetGame() {
-    p1Score = 0;
-    p2Score = 0;
-    document.getElementById("p1-turn").style.backgroundColor = "red";
-    document.getElementById("p1-turn-text").innerText = "Next Play";
-    document.getElementById("p2-turn").style.backgroundColor = "";
-    document.getElementById("p2-turn-text").innerText = "";
-    let boxes = document.querySelectorAll(".game-box");
-    boxes.forEach(function (box) {
-      box.classList.remove("active");
-      box.style.backgroundColor = "white";
-    });
-  }
-  resetGame();
-
+  document.getElementById("p1-turn").style.backgroundColor = "red";
+  document.getElementById("p1-turn-text").innerText = "Next Play";
+  
 
 
   function markColumn() {

@@ -43,6 +43,9 @@
   ul{padding:2em;
     font-size: larger;
  }
+ ul li{
+  margin-bottom: 1em;
+ }
  .close {width:100%;
     font-size: larger;
     font-weight: 400;
